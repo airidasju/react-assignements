@@ -3,7 +3,20 @@ function List({ person }) {
     <ul>
       {person.map((p) => (
         <li className='single-client' key={p.id}>
-          {p.name} {p.lastName}
+          <div>
+            {p.name} {p.lastName}
+          </div>
+          <div className='money-bin'>
+            <div className='amount-toChange'>
+              <div className='money-label'>
+                <label htmlFor='money'>Amount</label>
+                <input className='money' id='money' type='number'></input>
+              </div>
+              <button className='money-btn add'>+</button>
+              <button className='money-btn remove'>-</button>
+            </div>
+            {p.balance}
+          </div>
         </li>
       ))}
     </ul>

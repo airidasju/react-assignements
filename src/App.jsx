@@ -13,6 +13,7 @@ function App() {
       {
         name: name,
         lastName: lastName,
+        balance: 300000,
         id: uuidv4(),
       },
     ]);
