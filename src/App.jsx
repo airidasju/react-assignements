@@ -2,6 +2,7 @@ import './App.scss';
 import { useState } from 'react';
 import ContactForm from './ContactForm';
 import { v4 as uuidv4 } from 'uuid';
+import List from './ContactList';
 
 function App() {
   const [person, setPerson] = useState([]);
@@ -12,7 +13,7 @@ function App() {
       {
         name: name,
         lastName: lastName,
-        id: uuidv4()
+        id: uuidv4(),
       },
     ]);
   };
@@ -26,11 +27,7 @@ function App() {
             <div>NAME</div>
             <div>AMOUNT</div>
           </div>
-          <div>
-            {person.map((p) => (
-              <div className='single-client'>{p.name} {p.lastName}</div>
-            ))}
-          </div>
+          <List person={person}></List>
         </div>
       </div>
     </div>
