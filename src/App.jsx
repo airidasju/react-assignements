@@ -13,7 +13,7 @@ function App() {
       {
         name: name,
         lastName: lastName,
-        balance: 300000,
+        balance: null,
         id: uuidv4(),
       },
     ]);
@@ -28,7 +28,7 @@ function App() {
             <div>NAME</div>
             <div>AMOUNT</div>
           </div>
-          <List person={person}></List>
+          <List person={person} setPerson={setPerson}></List>
         </div>
       </div>
     </div>

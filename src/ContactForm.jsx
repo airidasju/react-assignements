@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 function ContactForm({ addPerson }) {
+  
   const [name, setName] = useState('');
   const handleName = (event) => {
     setName(event.target.value);
@@ -12,6 +13,8 @@ function ContactForm({ addPerson }) {
   const handleLastName = (event) => {
     setLastName(event.target.value);
   };
+
+
 
   const onSubmit = (e) => {
     e.preventDefault();
