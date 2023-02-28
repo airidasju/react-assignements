@@ -5,18 +5,21 @@ import { v4 as uuidv4 } from 'uuid';
 function ContactForm({ addPerson }) {
   const [name, setName] = useState('');
   const handleName = (event) => {
-    event.preventDefault();
     setName(event.target.value);
   };
 
   const [lastName, setLastName] = useState('');
   const handleLastName = (event) => {
-    event.preventDefault();
     setLastName(event.target.value);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if(name < 3) {
+      
+    }
+    setLastName("")
+    setName("")
   };
 
   return (
@@ -28,6 +31,7 @@ function ContactForm({ addPerson }) {
             className='input-field'
             type='text'
             id='name'
+            value={name}
             onChange={handleName}
           ></input>
         </div>
@@ -37,13 +41,14 @@ function ContactForm({ addPerson }) {
             className='input-field'
             type='text'
             id='last-name'
+            value={lastName}
             onChange={handleLastName}
           ></input>
         </div>
         <button
           className='submit-acc'
           type='submit'
-          onClick={() => addPerson(name, lastName)}
+          onClick={() => name.length > 3 && lastName.length > 3 ? addPerson(name, lastName): null}
         >
           Submit
         </button>
