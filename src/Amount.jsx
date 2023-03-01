@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Masina from './Masina';
+import InsufficientPop from './InsufficientPop';
 
 function Amount({ person, setPerson }) {
   const [balance, setBalance] = useState(0);
@@ -14,7 +14,7 @@ function Amount({ person, setPerson }) {
 
   const [negativeMoney, setNegativeMoney] = useState(false);
 
-  const handleButtonClick = () => {
+  const handleNegativeMoney = () => {
     setNegativeMoney(true);
 
     setTimeout(() => {
@@ -48,14 +48,14 @@ function Amount({ person, setPerson }) {
           onClick={() =>
             Number(person.balance) - Number(balance) >= 0
               ? (person.balance = Number(person.balance) - Number(balance))
-              : handleButtonClick()
+              : handleNegativeMoney()
           }
         >
           -
         </button>
       </form>
       {person.balance}
-      {negativeMoney ? <Masina></Masina> : null}
+      {negativeMoney ? <InsufficientPop></InsufficientPop> : null}
     </div>
   );
 }
