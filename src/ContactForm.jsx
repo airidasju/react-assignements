@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 function ContactForm({ addPerson }) {
-  
   const [name, setName] = useState('');
   const handleName = (event) => {
     setName(event.target.value);
@@ -14,20 +13,22 @@ function ContactForm({ addPerson }) {
     setLastName(event.target.value);
   };
 
-
+  const isValidInput = (name, lastname) => {
+    return name.length > 3 && lastname.length > 3;
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if(name < 3) {
-      
+    if (isValidInput(name, lastName)) {
+      addPerson(name, lastName);
+      setName('');
+      setLastName('');
     }
-    setLastName("")
-    setName("")
   };
 
   return (
-    <div className='all-clients' onSubmit={onSubmit}>
-      <form className='form'>
+    <div className='all-clients'>
+      <form className='form' onSubmit={onSubmit}>
         <div className='input-bin'>
           <label htmlFor='name'>First name</label>
           <input
@@ -48,11 +49,7 @@ function ContactForm({ addPerson }) {
             onChange={handleLastName}
           ></input>
         </div>
-        <button
-          className='submit-acc'
-          type='submit'
-          onClick={() => name.length > 3 && lastName.length > 3 ? addPerson(name, lastName): null}
-        >
+        <button className='submit-acc' type='submit'>
           Submit
         </button>
       </form>
