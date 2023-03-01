@@ -54,7 +54,6 @@
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
-  
 }
 
 .submit-acc {
@@ -109,10 +108,19 @@ ul {
   &.remove {
     background-color: red;
   }
-}  
+}
 
 .amount-toChange {
   display: flex;
   flex-direction: row;
   gap: 5px;
+}
+
+.insufficient {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  background-color: rgb(247, 161, 161);
+  padding: 30px;
+  border-radius: 10px;
 }
