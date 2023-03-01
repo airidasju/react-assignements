@@ -1,18 +1,22 @@
 import Amount from './Amount';
 import NotEmptyPop from './NotEmptyPop';
-
-const [negativeMoney, setNegativeMoney] = useState(false);
-
-
-const handleNotEmpty = () => {
-  setNegativeMoney(true);
-
-  setTimeout(() => {
-    setNegativeMoney(false);
-  }, 3000);
-};
+import { useState } from 'react';
 
 function List({ person, setPerson }) {
+
+
+  const [notEmpty, setNotEmpty] = useState(false);
+
+
+  const handleNotEmpty = () => {
+    setNotEmpty(true);
+  
+    setTimeout(() => {
+      setNotEmpty(false);
+    }, 3000);
+  };
+
+
   return (
     <ul>
       {person.map((p) => (
@@ -24,13 +28,15 @@ function List({ person, setPerson }) {
               onClick={() =>
                 p.balance < 1
                   ? setPerson((pers) => pers.filter((pers) => pers.id !== p.id))
-                  : null
+                  : handleNotEmpty()
               }
             >
               Delete
             </button>
           </div>
           <Amount person={p}></Amount>
+          {
+            notEmpty ? <NotEmptyPop></NotEmptyPop> : null}
         </li>
       ))}
     </ul>
