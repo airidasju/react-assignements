@@ -9,7 +9,7 @@ function List({ person, setPerson }) {
           <div>
             {p.name} {p.lastName}
           </div>
-          <Amount person={person}></Amount>
+          <Amount person={p}></Amount>
         </li>
       ))}
     </ul>
