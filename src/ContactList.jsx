@@ -1,17 +1,7 @@
 import { useState, useEffect } from 'react';
+import Amount from './Amount';
 
 function List({ person, setPerson }) {
-  const [balance, setBalance] = useState(0);
-  const handleBalance = (event) => {
-    setBalance(event.target.value);
-  };
-
-  const submitHandler = (e) => {
-    console.log('asd');
-    e.preventDefault();
-    setBalance('');
-  };
-
   return (
     <ul>
       {person.map((p) => (
@@ -19,36 +9,7 @@ function List({ person, setPerson }) {
           <div>
             {p.name} {p.lastName}
           </div>
-          <div className='money-bin'>
-            <form className='amount-toChange' onSubmit={submitHandler}>
-              <div className='money-label'>
-                <label htmlFor='money'>Amount</label>
-                <input
-                  className='money'
-                  id='money'
-                  type='text'
-                  onChange={handleBalance}
-                ></input>
-              </div>
-              <button
-                className='money-btn add'
-                onClick={() =>
-                  (p.balance = Number(p.balance) + Number(balance))
-                }
-              >
-                +
-              </button>
-              <button
-                className='money-btn remove'
-                onClick={() =>
-                  (p.balance = Number(p.balance) - Number(p.balance))
-                }
-              >
-                -
-              </button>
-            </form>
-            {p.balance}
-          </div>
+          <Amount person={person}></Amount>
         </li>
       ))}
     </ul>
