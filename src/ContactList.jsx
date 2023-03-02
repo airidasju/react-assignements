@@ -34,7 +34,7 @@ function List({ person, setPerson }) {
                 p.balance < 1 ? handleDelConfirm(p) : handleNotEmpty()
               }
             >
-              &#9746;
+              &#8855;
             </button>
             {delConfirm && p.deleting === true ? (
               <DelConfirm

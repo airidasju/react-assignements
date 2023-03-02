@@ -135,10 +135,10 @@ ul {
 }
 
 .remove-user {
-  font-size: 20px;
+  font-size: 16px;
   background-color: rgb(43, 40, 35);
   border: none;
-  color: whitesmoke;
+  color: red;
   display: flex;
   margin-bottom: 30px;
 }
@@ -149,10 +149,10 @@ ul {
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  padding: 10px;
+  padding: 5px;
   font-size: 15px;
-  left: -25px;
-  bottom: 40px;
+  left: -21px;
+  bottom: 30px;
   background-color: rgb(247, 161, 161);
   border-radius: 10px;
 }
