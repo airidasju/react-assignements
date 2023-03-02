@@ -14,6 +14,7 @@ function App() {
         name: name,
         lastName: lastName,
         balance: 0,
+        deleting: false,
         id: uuidv4(),
       },
     ]);

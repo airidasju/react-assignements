@@ -4,26 +4,22 @@ import { useState } from 'react';
 import DelConfirm from './DelConfirm';
 
 function List({ person, setPerson }) {
-
-
   const [notEmpty, setNotEmpty] = useState(false);
-
 
   const handleNotEmpty = () => {
     setNotEmpty(true);
-  
+
     setTimeout(() => {
       setNotEmpty(false);
     }, 3000);
   };
 
-
   const [delConfirm, setDelConfirm] = useState(false);
 
-
   const handleDelConfirm = (el) => {
-    console.log(el)
+    console.log(el.id);
     setDelConfirm(true);
+    el.deleting = true;
   };
 
   return (
@@ -35,20 +31,21 @@ function List({ person, setPerson }) {
             <button
               className='remove-user'
               onClick={() =>
-                p.balance < 1
-                  ? handleDelConfirm(p)
-                  : handleNotEmpty()
+                p.balance < 1 ? handleDelConfirm(p) : handleNotEmpty()
               }
             >
               &#9746;
             </button>
-            {
-              delConfirm ? <DelConfirm setPerson={setPerson} setDelConfirm={setDelConfirm} p={p}></DelConfirm> : null
-            }
+            {delConfirm && p.deleting === true ? (
+              <DelConfirm
+                setPerson={setPerson}
+                setDelConfirm={setDelConfirm}
+                p={p}
+              ></DelConfirm>
+            ) : null}
           </div>
           <Amount person={p}></Amount>
-          {
-            notEmpty ? <NotEmptyPop></NotEmptyPop> : null}
+          {notEmpty ? <NotEmptyPop></NotEmptyPop> : null}
         </li>
       ))}
     </ul>
