@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import InsufficientPop from './InsufficientPop';
 
 function Amount({ person, setPerson }) {
