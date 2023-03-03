@@ -1,6 +1,6 @@
 import './App.scss';
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import PersonModal from './PersonModal';
 
 function ContactForm({ addPerson }) {
   const [name, setName] = useState('');
@@ -17,10 +17,26 @@ function ContactForm({ addPerson }) {
     return name.length > 3 && lastname.length > 3;
   };
 
+
+  const [personModal, setPersonModal] = useState(false);
+  const [savedName, setSavedName] = useState()
+  const [savedLastName, setSavedLastName] = useState()
+
+  const personCreatedPop = () => {
+    setPersonModal(true);
+    setTimeout(() => {
+      setPersonModal(false);
+    }, 3000);
+  };
+
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (isValidInput(name, lastName)) {
       addPerson(name, lastName);
+      setSavedName(name)
+      setSavedLastName(lastName)
+      personCreatedPop();
       setName('');
       setLastName('');
     }
@@ -53,6 +69,7 @@ function ContactForm({ addPerson }) {
           Submit
         </button>
       </form>
+      {personModal ? <PersonModal savedName={savedName} savedLastName={savedLastName}></PersonModal> : null}
     </div>
   );
 }
