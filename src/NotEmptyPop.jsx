@@ -1,5 +1,5 @@
 function NotEmptyPop() {
-    return <div className='insufficient'>Account must be empty to remove</div>;
+    return <div className='modal insufficient'>Account must be empty to remove</div>;
   }
   
   export default NotEmptyPop;

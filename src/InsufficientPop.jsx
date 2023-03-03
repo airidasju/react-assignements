@@ -1,5 +1,5 @@
 function InsufficientPop() {
-  return <div className='insufficient'>Insufficient Funds</div>;
+  return <div className='modal insufficient'>Insufficient Funds</div>;
 }
 
 export default InsufficientPop;

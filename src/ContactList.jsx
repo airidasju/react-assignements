@@ -3,6 +3,7 @@ import NotEmptyPop from './NotEmptyPop';
 import { useState } from 'react';
 import DelConfirm from './DelConfirm';
 
+
 function List({ person, setPerson }) {
   const [notEmpty, setNotEmpty] = useState(false);
 
@@ -17,7 +18,6 @@ function List({ person, setPerson }) {
   const [delConfirm, setDelConfirm] = useState(false);
 
   const handleDelConfirm = (el) => {
-    console.log(el.id);
     setDelConfirm(true);
     el.deleting = true;
   };
