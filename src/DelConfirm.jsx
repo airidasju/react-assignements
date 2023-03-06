@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 function DelConfirm({ setPerson, setDelConfirm, p }) {
   const delAcceptHandler = (el) => {
     setPerson((pers) => pers.filter((pers) => pers.id !== el.id));
