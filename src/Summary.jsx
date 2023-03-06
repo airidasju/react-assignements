@@ -9,7 +9,7 @@ function Summary({ person }) {
     } else if (person.length === 1) {
       setAllMoney(person[0].balance);
     } else {
-      setAllMoney(person.reduce((a, b) => a.balance + b.balance));
+      setAllMoney(person.reduce((sum, obj) => sum + obj['balance'], 0));
     }
   }, [person]);
 

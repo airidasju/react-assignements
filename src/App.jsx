@@ -8,6 +8,8 @@ import Summary from './Summary';
 function App() {
   const [person, setPerson] = useState([]);
 
+  const [selectedFilter, setSelectedFilter] = useState('all');
+
   const addPerson = (name, lastName) => {
     setPerson((p) => [
       ...p,
@@ -29,9 +31,22 @@ function App() {
         <div className='clientele'>
           <div className='client-header'>
             <div>NAME</div>
+            <select
+              name='filter'
+              value={selectedFilter}
+              onChange={(e) => setSelectedFilter(e.target.value)}
+            >
+              <option value='all'>All accounts</option>
+              <option value='empty'>Empty accounts</option>
+              <option value='full'>Accounts with money</option>
+            </select>
             <div>AMOUNT</div>
           </div>
-          <List person={person} setPerson={setPerson}></List>
+          <List
+            person={person}
+            setPerson={setPerson}
+            filter={selectedFilter}
+          ></List>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import NotEmptyPop from './NotEmptyPop';
 import { useState } from 'react';
 import DelConfirm from './DelConfirm';
 
-function List({ person, setPerson }) {
+function List({ person, setPerson, filter }) {
   const [notEmpty, setNotEmpty] = useState(false);
 
   const handleNotEmpty = () => {
@@ -21,36 +21,102 @@ function List({ person, setPerson }) {
     el.deleting = true;
   };
 
-  return (
-    <ul>
-      {person
-        .sort((a, b) => (a > b ? -1 : 1))
-        .map((p) => (
-          <li className='single-client' key={p.id}>
-            <div className='client-name'>
-              {p.name} {p.lastName}
-              <button
-                className='remove-user'
-                onClick={() =>
-                  p.balance < 1 ? handleDelConfirm(p) : handleNotEmpty()
-                }
-              >
-                &#8855;
-              </button>
-              {delConfirm && p.deleting === true ? (
-                <DelConfirm
-                  setPerson={setPerson}
-                  setDelConfirm={setDelConfirm}
-                  p={p}
-                ></DelConfirm>
-              ) : null}
-            </div>
-            <Amount person={p} people={person} setPerson={setPerson}></Amount>
-            {notEmpty ? <NotEmptyPop></NotEmptyPop> : null}
-          </li>
-        ))}
-    </ul>
-  );
+  if (filter === 'all') {
+    return (
+      <ul>
+        {person
+          .sort((a, b) => (a > b ? -1 : 1))
+          .map((p) => (
+            <li className='single-client' key={p.id}>
+              <div className='client-name'>
+                {p.name} {p.lastName}
+                <button
+                  className='remove-user'
+                  onClick={() =>
+                    p.balance < 1 ? handleDelConfirm(p) : handleNotEmpty()
+                  }
+                >
+                  &#8855;
+                </button>
+                {delConfirm && p.deleting === true ? (
+                  <DelConfirm
+                    setPerson={setPerson}
+                    setDelConfirm={setDelConfirm}
+                    p={p}
+                  ></DelConfirm>
+                ) : null}
+              </div>
+              <Amount person={p} people={person} setPerson={setPerson}></Amount>
+              {notEmpty ? <NotEmptyPop></NotEmptyPop> : null}
+            </li>
+          ))}
+      </ul>
+    );
+  } else if (filter === 'full') {
+    return (
+      <ul>
+        {person
+          .sort((a, b) => (a > b ? -1 : 1))
+          .filter((p) => p.balance > 0)
+          .map((p) => (
+            <li className='single-client' key={p.id}>
+              <div className='client-name'>
+                {p.name} {p.lastName}
+                <button
+                  className='remove-user'
+                  onClick={() =>
+                    p.balance < 1 ? handleDelConfirm(p) : handleNotEmpty()
+                  }
+                >
+                  &#8855;
+                </button>
+                {delConfirm && p.deleting === true ? (
+                  <DelConfirm
+                    setPerson={setPerson}
+                    setDelConfirm={setDelConfirm}
+                    p={p}
+                  ></DelConfirm>
+                ) : null}
+              </div>
+              <Amount person={p} people={person} setPerson={setPerson}></Amount>
+              {notEmpty ? <NotEmptyPop></NotEmptyPop> : null}
+            </li>
+          ))}
+      </ul>
+    );
+  } else if (filter === 'empty') {
+    return (
+      <ul>
+        {person
+          .sort((a, b) => (a > b ? -1 : 1))
+          .filter((p) => p.balance === 0)
+          .map((p) => (
+            <li className='single-client' key={p.id}>
+              <div className='client-name'>
+                {p.name} {p.lastName}
+                <button
+                  className='remove-user'
+                  onClick={() =>
+                    p.balance < 1 ? handleDelConfirm(p) : handleNotEmpty()
+                  }
+                >
+                  &#8855;
+                </button>
+                {delConfirm && p.deleting === true ? (
+                  <DelConfirm
+                    setPerson={setPerson}
+                    setDelConfirm={setDelConfirm}
+                    p={p}
+                  ></DelConfirm>
+                ) : null}
+              </div>
+              <Amount person={p} people={person} setPerson={setPerson}></Amount>
+              {notEmpty ? <NotEmptyPop></NotEmptyPop> : null}
+            </li>
+          ))}
+      </ul>
+    );
+  }
 }
 
 export default List;
