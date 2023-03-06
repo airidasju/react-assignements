@@ -22,40 +22,39 @@ function Amount({ person, setPerson, people }) {
     }, 3000);
   };
 
+  function handleAdd(p) {
+    const updatedBalance = people.map((person) => {
+      if (person.id !== p.id) {
+        // No change
+        return person;
+      } else {
+        // Return a new circle 50px below
+        return {
+          ...person,
+          balance: Number(person.balance) + Number(balance),
+        };
+      }
+    });
+    // Re-render with the new array
+    setPerson(updatedBalance);
+  }
 
-function handleAdd(p) {
-  const updatedBalance = people.map(person => {
-    if (person.id !== p.id) {
-      // No change
-      return person;
-    } else {
-      // Return a new circle 50px below
-      return {
-        ...person,
-        balance: Number(person.balance) + Number(balance),
-      };
-    }
-  });
-  // Re-render with the new array
-  setPerson(updatedBalance);
-}
-
-function handleDeduct(p) {
-  const updatedBalance = people.map(person => {
-    if (person.id !== p.id) {
-      // No change
-      return person;
-    } else {
-      // Return a new circle 50px below
-      return {
-        ...person,
-        balance: Number(person.balance) - Number(balance),
-      };
-    }
-  });
-  // Re-render with the new array
-  setPerson(updatedBalance);
-}
+  function handleDeduct(p) {
+    const updatedBalance = people.map((person) => {
+      if (person.id !== p.id) {
+        // No change
+        return person;
+      } else {
+        // Return a new circle 50px below
+        return {
+          ...person,
+          balance: Number(person.balance) - Number(balance),
+        };
+      }
+    });
+    // Re-render with the new array
+    setPerson(updatedBalance);
+  }
 
   return (
     <div className='money-bin'>
@@ -70,10 +69,7 @@ function handleDeduct(p) {
             onChange={handleBalance}
           ></input>
         </div>
-        <button
-          className='money-btn add'
-          onClick={() => handleAdd(person)}  
-        >
+        <button className='money-btn add' onClick={() => handleAdd(person)}>
           +
         </button>
         <button
