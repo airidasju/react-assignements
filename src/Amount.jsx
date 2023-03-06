@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import InsufficientPop from './InsufficientPop';
+import AddedMoneyModal from './AddedMoneyModal';
 
 function Amount({ person, setPerson, people }) {
   const [balance, setBalance] = useState(0);
@@ -22,13 +23,17 @@ function Amount({ person, setPerson, people }) {
     }, 3000);
   };
 
+
+  const [added, setAdded] = useState(false)
+  const [savedBalance, setSavedBalance] = useState()
+
+
   function handleAdd(p) {
     const updatedBalance = people.map((person) => {
       if (person.id !== p.id) {
         // No change
         return person;
       } else {
-        // Return a new circle 50px below
         return {
           ...person,
           balance: Number(person.balance) + Number(balance),
@@ -36,6 +41,11 @@ function Amount({ person, setPerson, people }) {
       }
     });
     // Re-render with the new array
+    setAdded(true);
+    setSavedBalance(balance)
+    setTimeout(() => {
+      setAdded(false);
+    }, 3000);
     setPerson(updatedBalance);
   }
 
@@ -85,6 +95,7 @@ function Amount({ person, setPerson, people }) {
       </form>
       {person.balance}
       {negativeMoney ? <InsufficientPop></InsufficientPop> : null}
+      {added ? <AddedMoneyModal balance={savedBalance} person={person}></AddedMoneyModal> : null}
     </div>
   );
 }
