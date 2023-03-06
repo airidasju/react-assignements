@@ -41,11 +41,14 @@ function Amount({ person, setPerson, people }) {
       }
     });
     // Re-render with the new array
-    setAdded(true);
-    setSavedBalance(balance);
-    setTimeout(() => {
-      setAdded(false);
-    }, 3000);
+    if (balance > 0) {
+      setAdded(true);
+      setSavedBalance(balance);
+      setTimeout(() => {
+        setAdded(false);
+      }, 3000);
+    }
+
     setPerson(updatedBalance);
   }
 
@@ -61,11 +64,14 @@ function Amount({ person, setPerson, people }) {
         };
       }
     });
-    setDeducted(true);
-    setSavedBalance(balance);
-    setTimeout(() => {
-      setDeducted(false);
-    }, 3000);
+    if (balance > 0) {
+      setDeducted(true);
+      setSavedBalance(balance);
+      setTimeout(() => {
+        setDeducted(false);
+      }, 3000);
+    }
+
     setPerson(updatedBalance);
   }
 
