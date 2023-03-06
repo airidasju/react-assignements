@@ -2,8 +2,7 @@ import DeleteModal from './DeleteModal';
 import { useState } from 'react';
 
 function DelConfirm({ setPerson, setDelConfirm, p }) {
-  
-  const [deleteModal, setDeleteModal] = useState(false)
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const delModalHandler = () => {
     setDeleteModal(true);
@@ -11,7 +10,7 @@ function DelConfirm({ setPerson, setDelConfirm, p }) {
       setDeleteModal(false);
     }, 3000);
   };
-  
+
   const delAcceptHandler = (el) => {
     setPerson((pers) => pers.filter((pers) => pers.id !== el.id));
     setDelConfirm(false);
@@ -28,7 +27,7 @@ function DelConfirm({ setPerson, setDelConfirm, p }) {
     <>
       <div className='del-confirm'>
         <span>Are you sure?</span>
-        <div style={{ display: 'flex', gap: '5px' }}>
+        <div style={{ display: 'flex', gap: '30px' }}>
           <button
             className='del-confirmBtn accept'
             onClick={() => delAcceptHandler(p)}
