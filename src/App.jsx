@@ -1,12 +1,17 @@
 import './App.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ContactForm from './ContactForm';
 import { v4 as uuidv4 } from 'uuid';
 import List from './ContactList';
 import Summary from './Summary';
 
 function App() {
-  const [person, setPerson] = useState([]);
+  const [person, setPerson] = useState(() => {
+    // getting stored value
+    const saved = localStorage.getItem('people');
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
 
   const [selectedFilter, setSelectedFilter] = useState('all');
 
@@ -22,6 +27,11 @@ function App() {
       },
     ]);
   };
+
+  useEffect(() => {
+    // storing input name
+    localStorage.setItem('people', JSON.stringify(person));
+  }, [person]);
 
   return (
     <div className='App'>
