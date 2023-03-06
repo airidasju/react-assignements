@@ -4,9 +4,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
+  gap: 50px;
 }
 
 .canvas {
@@ -139,7 +140,6 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 
 .remove-user {
@@ -152,16 +152,24 @@ ul {
 }
 
 .del-confirm {
-  position: relative;
   display: flex;
+  position: absolute;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 30px;
   padding: 5px;
-  font-size: 15px;
-  left: -21px;
-  bottom: 30px;
-  background-color: rgb(247, 161, 161);
+  font-size: 30px;
+  height: 140px;
+  width: 240px;
+
+  left: 50%;
+  top: 50%;
+
+  margin-left: -120px;
+  margin-top: -70px;
+
+  background-color: rgb(255, 136, 136);
   border-radius: 10px;
 }
 
@@ -170,6 +178,7 @@ ul {
   border: 1px whitesmoke solid;
   padding: 5px;
   border-radius: 5px;
+  font-size: 20px;
   &.accept {
     background-color: green;
   }
@@ -178,4 +187,10 @@ ul {
   }
 }
 
-
+.summary {
+  background-color: rgb(43, 40, 35);
+  border: 2px solid whitesmoke;
+  margin-top: 150px;
+  width: 400px;
+  height: 100px;
+}
