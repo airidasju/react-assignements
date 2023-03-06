@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ContactForm from './ContactForm';
 import { v4 as uuidv4 } from 'uuid';
 import List from './ContactList';
+import Summary from './Summary';
 
 function App() {
   const [person, setPerson] = useState([]);
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <div className='App'>
+      <Summary person={person}></Summary>
       <div className='canvas'>
         <ContactForm addPerson={addPerson}></ContactForm>
         <div className='clientele'>
