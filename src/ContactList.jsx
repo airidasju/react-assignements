@@ -3,7 +3,6 @@ import NotEmptyPop from './NotEmptyPop';
 import { useState } from 'react';
 import DelConfirm from './DelConfirm';
 
-
 function List({ person, setPerson }) {
   const [notEmpty, setNotEmpty] = useState(false);
 
@@ -24,30 +23,32 @@ function List({ person, setPerson }) {
 
   return (
     <ul>
-      {person.map((p) => (
-        <li className='single-client' key={p.id}>
-          <div className='client-name'>
-            {p.name} {p.lastName}
-            <button
-              className='remove-user'
-              onClick={() =>
-                p.balance < 1 ? handleDelConfirm(p) : handleNotEmpty()
-              }
-            >
-              &#8855;
-            </button>
-            {delConfirm && p.deleting === true ? (
-              <DelConfirm
-                setPerson={setPerson}
-                setDelConfirm={setDelConfirm}
-                p={p}
-              ></DelConfirm>
-            ) : null}
-          </div>
-          <Amount person={p}></Amount>
-          {notEmpty ? <NotEmptyPop></NotEmptyPop> : null}
-        </li>
-      ))}
+      {person
+        .sort((a, b) => (a > b ? -1 : 1))
+        .map((p) => (
+          <li className='single-client' key={p.id}>
+            <div className='client-name'>
+              {p.name} {p.lastName}
+              <button
+                className='remove-user'
+                onClick={() =>
+                  p.balance < 1 ? handleDelConfirm(p) : handleNotEmpty()
+                }
+              >
+                &#8855;
+              </button>
+              {delConfirm && p.deleting === true ? (
+                <DelConfirm
+                  setPerson={setPerson}
+                  setDelConfirm={setDelConfirm}
+                  p={p}
+                ></DelConfirm>
+              ) : null}
+            </div>
+            <Amount person={p} people={person} setPerson={setPerson}></Amount>
+            {notEmpty ? <NotEmptyPop></NotEmptyPop> : null}
+          </li>
+        ))}
     </ul>
   );
 }
