@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import InsufficientPop from './InsufficientPop';
 import AddedMoneyModal from './AddedMoneyModal';
+import DeductMoneyModal from './DeductMoneyModal';
 
 function Amount({ person, setPerson, people }) {
   const [balance, setBalance] = useState(0);
@@ -23,10 +24,9 @@ function Amount({ person, setPerson, people }) {
     }, 3000);
   };
 
-
-  const [added, setAdded] = useState(false)
-  const [savedBalance, setSavedBalance] = useState()
-
+  const [added, setAdded] = useState(false);
+  const [savedBalance, setSavedBalance] = useState();
+  const [deducted, setDeducted] = useState(false);
 
   function handleAdd(p) {
     const updatedBalance = people.map((person) => {
@@ -42,7 +42,7 @@ function Amount({ person, setPerson, people }) {
     });
     // Re-render with the new array
     setAdded(true);
-    setSavedBalance(balance)
+    setSavedBalance(balance);
     setTimeout(() => {
       setAdded(false);
     }, 3000);
@@ -55,14 +55,17 @@ function Amount({ person, setPerson, people }) {
         // No change
         return person;
       } else {
-        // Return a new circle 50px below
         return {
           ...person,
           balance: Number(person.balance) - Number(balance),
         };
       }
     });
-    // Re-render with the new array
+    setDeducted(true);
+    setSavedBalance(balance);
+    setTimeout(() => {
+      setDeducted(false);
+    }, 3000);
     setPerson(updatedBalance);
   }
 
@@ -95,7 +98,18 @@ function Amount({ person, setPerson, people }) {
       </form>
       {person.balance}
       {negativeMoney ? <InsufficientPop></InsufficientPop> : null}
-      {added ? <AddedMoneyModal balance={savedBalance} person={person}></AddedMoneyModal> : null}
+      {added ? (
+        <AddedMoneyModal
+          balance={savedBalance}
+          person={person}
+        ></AddedMoneyModal>
+      ) : null}
+      {deducted ? (
+        <DeductMoneyModal
+          balance={savedBalance}
+          person={person}
+        ></DeductMoneyModal>
+      ) : null}
     </div>
   );
 }
