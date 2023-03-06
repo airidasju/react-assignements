@@ -1,5 +1,6 @@
 import DeleteModal from './DeleteModal';
 import { useState } from 'react';
+import DeletedModal from './DeletedModal';
 
 function DelConfirm({ setPerson, setDelConfirm, p }) {
   const [deleteModal, setDeleteModal] = useState(false);
@@ -11,7 +12,16 @@ function DelConfirm({ setPerson, setDelConfirm, p }) {
     }, 3000);
   };
 
+  const [deletePop, setDeletePop] = useState(false);
+  const [savedDeleted, setSavedDeleted] = useState({});
+
   const delAcceptHandler = (el) => {
+    setSavedDeleted({ name: el.name, lastName: el.lastName });
+    setDeletePop(true);
+    setTimeout(() => {
+      setDeletePop(false);
+    }, 3000);
+
     setPerson((pers) => pers.filter((pers) => pers.id !== el.id));
     setDelConfirm(false);
     delModalHandler();
@@ -43,6 +53,7 @@ function DelConfirm({ setPerson, setDelConfirm, p }) {
         </div>
       </div>
       {deleteModal ? <DeleteModal></DeleteModal> : null}
+      {deletePop ? <DeletedModal person={savedDeleted}></DeletedModal> : null}
     </>
   );
 }
