@@ -17,10 +17,9 @@ function ContactForm({ addPerson }) {
     return name.length > 3 && lastname.length > 3;
   };
 
-
   const [personModal, setPersonModal] = useState(false);
-  const [savedName, setSavedName] = useState()
-  const [savedLastName, setSavedLastName] = useState()
+  const [savedName, setSavedName] = useState();
+  const [savedLastName, setSavedLastName] = useState();
 
   const personCreatedPop = () => {
     setPersonModal(true);
@@ -29,13 +28,12 @@ function ContactForm({ addPerson }) {
     }, 3000);
   };
 
-
   const onSubmit = (e) => {
     e.preventDefault();
     if (isValidInput(name, lastName)) {
       addPerson(name, lastName);
-      setSavedName(name)
-      setSavedLastName(lastName)
+      setSavedName(name);
+      setSavedLastName(lastName);
       personCreatedPop();
       setName('');
       setLastName('');
@@ -56,7 +54,7 @@ function ContactForm({ addPerson }) {
           ></input>
         </div>
         <div className='input-bin'>
-          <label htmlFor='last-name'>Last Name</label>
+          <label htmlFor='last-name'>Last name</label>
           <input
             className='input-field'
             type='text'
@@ -69,7 +67,12 @@ function ContactForm({ addPerson }) {
           Submit
         </button>
       </form>
-      {personModal ? <PersonModal savedName={savedName} savedLastName={savedLastName}></PersonModal> : null}
+      {personModal ? (
+        <PersonModal
+          savedName={savedName}
+          savedLastName={savedLastName}
+        ></PersonModal>
+      ) : null}
     </div>
   );
 }
